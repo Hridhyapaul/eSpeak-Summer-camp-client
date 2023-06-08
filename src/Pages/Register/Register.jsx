@@ -50,9 +50,9 @@ const Register = () => {
                                 {...register("name", { required: true })}
                                 placeholder='Enter Your Name'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             />
-                            {errors.name && <span className="mt-2">Name field is required</span>}
+                            {errors.name && <p className="mt-2 text-[#CC0000]">Name field is required</p>}
                         </div>
                         <div className='col-span-1'>
                             <label htmlFor="email" className="block mb-1 font-medium">
@@ -63,9 +63,9 @@ const Register = () => {
                                 {...register("email", { required: true })}
                                 placeholder='Enter Your Email'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             />
-                            {errors.email && <span className="mt-2">Email field is required</span>}
+                            {errors.email && <p className="mt-2 text-[#CC0000]">Email field is required</p>}
                         </div>
                         <div className='col-span-2'>
                             <label htmlFor="password" className="block mb-1 font-medium">
@@ -81,7 +81,7 @@ const Register = () => {
                                     })}
                                     className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                     placeholder="Enter your password"
-                                    required
+                                    
                                 />
                                 <button
                                     type="button"
@@ -109,8 +109,9 @@ const Register = () => {
                                 {...register("confirm", { required: true })}
                                 placeholder='Enter Confirm Password'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                               
                             />
+                            {errors.confirm && <p className="mt-2 text-[#CC0000]">Confirm password is required</p>}
                         </div>
                         <div className='col-span-2'>
                             <label htmlFor="photoURL" className="block mb-1 font-medium">
@@ -121,9 +122,9 @@ const Register = () => {
                                 {...register("photo", { required: true })}
                                 placeholder='Enter Photo URL'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             />
-                            {errors.photo && <span className="mt-2">PhotoURL field is required</span>}
+                            {errors.photo && <p className="mt-2 text-[#CC0000]">PhotoURL field is required</p>}
                         </div>
                         <div className='col-span-1'>
                             <label htmlFor="gender" className="block mb-1 font-medium">
@@ -133,7 +134,7 @@ const Register = () => {
                                 name='gender'
                                 {...register("gender", { required: true })}
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             >
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
@@ -150,9 +151,9 @@ const Register = () => {
                                 {...register("phone", { required: true })}
                                 placeholder='Enter Phone Number'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             />
-                            {errors.phone && <span className="mt-2">Phone number field is required</span>}
+                            {errors.phone && <p className="mt-2 text-[#CC0000]">Phone number field is required</p>}
                         </div>
                         <div className='col-span-2'>
                             <label htmlFor="address" className="block mb-1 font-medium">
@@ -162,9 +163,9 @@ const Register = () => {
                                 {...register("address", { required: true })}
                                 placeholder='Enter Your Address'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                required
+                                
                             ></textarea>
-                            {errors.address && <span className="mt-2">Address field is required</span>}
+                            {errors.address && <p className="mt-2 text-[#CC0000]">Address field is required</p>}
                         </div>
                     </div>
                     <button

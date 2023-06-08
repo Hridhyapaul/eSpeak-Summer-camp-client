@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Navigation = () => {
+    const { user } = useAuth();
     const navItems = <>
         <Link to='/'><li><a>Home</a></li></Link>
         <Link to='/instructors'><li><a>Instructors</a></li></Link>
         <Link to='/classes'><li><a>Classes</a></li></Link>
-        <Link to='/dashboard'><li><a>Dashboard</a></li></Link>
     </>
     return (
         <div className="navbar px-4 fixed z-10 max-w-screen-xl mx-auto shadow-md bg-white">
@@ -25,9 +26,33 @@ const Navigation = () => {
                     {navItems}
                 </ul>
             </div>
-            <div className="navbar-end flex justify-end gap-2 text-[white]">
-                <Link to='/login'><button className="font-semibold bg-[#082A5E] px-4 py-2 rounded-full">Login</button></Link>
-                <Link to='/register'><button className="font-semibold bg-[#082A5E] px-4 py-2 rounded-full">Register</button></Link>
+            
+            {/* Dropdown */}
+            <div className="navbar-end">
+                <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={user?.photoURL} />
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <Link to='/dashboard'>Dashboard</Link>
+                        </li>
+                        {
+                            user ?
+                                <>
+                                    <li><a>Logout</a></li>
+                                </>
+                                :
+                                <>
+                                    <Link to="/login"><li><a>Login</a></li></Link>
+                                    <Link to="/register"><li><a>Register</a></li></Link>
+                                </>
+                        }
+
+                    </ul>
+                </div>
             </div>
         </div>
     );
