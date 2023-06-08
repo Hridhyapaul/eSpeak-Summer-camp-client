@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from '../../Hooks/useAuth';
+import { useForm } from 'react-hook-form';
+import { Toaster, toast } from 'react-hot-toast'
 
 const Register = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -10,11 +13,33 @@ const Register = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+    const { createUser, updateUserProfile } = useAuth();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+        console.log(data)
+        createUser(data.email, data.password)
+            .then(result => {
+                const createUser = result.user;
+                console.log(createUser);
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        console.log('User profile updated')
+                    })
+            })
+            .catch(error => {
+                console.log(error.message)
+                if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+                    toast.error('The provided email is already registered.')
+                }
+            })
+    }
     return (
         <div className="flex flex-col items-center justify-center bg-gray-100 pb-20 pt-32">
             <h1 className="text-3xl font-bold mb-10">Registration Form</h1>
             <div className="w-[600px] bg-white rounded shadow-md p-12">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-2 gap-8">
                         <div className='col-span-1'>
                             <label htmlFor="name" className="block mb-1 font-medium">
@@ -22,11 +47,12 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name='name'
+                                {...register("name", { required: true })}
                                 placeholder='Enter Your Name'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             />
+                            {errors.name && <span className="mt-2">Name field is required</span>}
                         </div>
                         <div className='col-span-1'>
                             <label htmlFor="email" className="block mb-1 font-medium">
@@ -34,19 +60,25 @@ const Register = () => {
                             </label>
                             <input
                                 type="email"
-                                name='email'
+                                {...register("email", { required: true })}
                                 placeholder='Enter Your Email'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             />
+                            {errors.email && <span className="mt-2">Email field is required</span>}
                         </div>
-                        <div className='col-span-1'>
+                        <div className='col-span-2'>
                             <label htmlFor="password" className="block mb-1 font-medium">
                                 Password
                             </label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
+                                    {...register("password", {
+                                        required: true,
+                                        minLength: 6,
+                                        pattern: /(?=.*\d)(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[-!@#$&*])/
+                                    })}
                                     className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                     placeholder="Enter your password"
                                     required
@@ -62,15 +94,19 @@ const Register = () => {
                                         <HiOutlineEye></HiOutlineEye>
                                     )}
                                 </button>
+
+                                {errors.password?.type === 'required' && <p className="mt-2 text-[#CC0000]">Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className="mt-2 text-[#CC0000]">Password must be 6 character</p>}
+                                {errors.password?.type === 'pattern' && <p className="mt-2 text-[#CC0000]">Password must have one uppercase, one lowercase, one number & one special character</p>}
                             </div>
                         </div>
-                        <div className='col-span-1'>
+                        <div className='col-span-2'>
                             <label htmlFor="confirmPassword" className="block mb-1 font-medium">
                                 Confirm Password
                             </label>
                             <input
                                 type="password"
-                                name='confirm'
+                                {...register("confirm", { required: true })}
                                 placeholder='Enter Confirm Password'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
@@ -82,11 +118,12 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name='photo'
+                                {...register("photo", { required: true })}
                                 placeholder='Enter Photo URL'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             />
+                            {errors.photo && <span className="mt-2">PhotoURL field is required</span>}
                         </div>
                         <div className='col-span-1'>
                             <label htmlFor="gender" className="block mb-1 font-medium">
@@ -94,6 +131,7 @@ const Register = () => {
                             </label>
                             <select
                                 name='gender'
+                                {...register("gender", { required: true })}
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             >
@@ -109,22 +147,24 @@ const Register = () => {
                             </label>
                             <input
                                 type="tel"
-                                name='phone'
+                                {...register("phone", { required: true })}
                                 placeholder='Enter Phone Number'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             />
+                            {errors.phone && <span className="mt-2">Phone number field is required</span>}
                         </div>
                         <div className='col-span-2'>
                             <label htmlFor="address" className="block mb-1 font-medium">
                                 Address
                             </label>
                             <textarea
-                                name='address'
+                                {...register("address", { required: true })}
                                 placeholder='Enter Your Address'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                 required
                             ></textarea>
+                            {errors.address && <span className="mt-2">Address field is required</span>}
                         </div>
                     </div>
                     <button
@@ -151,6 +191,10 @@ const Register = () => {
                     <p className='text-[16px]'>Not a member? <Link to='/login' className='text-[#082A5E] font-semibold'>Login</Link></p>
                 </div>
             </div>
+            <Toaster
+                position="bottom-left"
+                reverseOrder={false}
+            />
         </div>
     );
 };

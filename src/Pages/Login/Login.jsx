@@ -15,7 +15,7 @@ const Login = () => {
         <div className="flex flex-col items-center justify-center bg-base-200 pb-20 pt-32">
             <div className=''>
                 <h1 className="text-4xl font-bold text-center text-[#082A5E] mb-8">Login Form</h1>
-                <div className="w-80 bg-white rounded shadow-lg p-6">
+                <div className="w-[400px] bg-white rounded shadow-lg p-6">
                     <form className="space-y-4">
                         <div>
                             <label htmlFor="email" className="block text-gray-800 font-medium mb-1">
