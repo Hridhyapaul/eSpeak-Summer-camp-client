@@ -3,7 +3,7 @@ import { LuUsers } from "react-icons/lu";
 import ReactStars from "react-rating-stars-component";
 
 const PopularClassesCard = ({ course }) => {
-    const { category, duration, fee, image, instructor, modules, rating, enrolled, title } = course
+    const { category, duration, fee, image, modules, rating, enrolled, title } = course
 
     const courseRating = {
         size: 24,
