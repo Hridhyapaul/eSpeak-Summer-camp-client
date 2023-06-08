@@ -8,7 +8,8 @@
         "enrolled": 120,
         "modules": 8,
         "instructor": "Maria Garcia",
-        "category": "Spanish"
+        "category": "Spanish",
+        "description": "Learn Spanish with Maria Garcia through 8 modules in this 25-hour course. Master essential phrases, grammar, and pronunciation. Ideal for beginners, with a rating of 4.5, and 120 students enrolled."
     },
     {
         "title": "French Language Mastery",
@@ -19,7 +20,8 @@
         "enrolled": 90,
         "modules": 10,
         "instructor": "Jean Baptiste",
-        "category": "French"
+        "category": "French",
+        "description": "Join Jean Baptiste in this 22-hour course, consisting of 10 modules, to achieve French language proficiency. Develop conversational skills, vocabulary, and grammar. Rated 4.8 with 90 enrolled learners."
     },
     {
         "title": "Mandarin Chinese for Business",
@@ -30,7 +32,8 @@
         "enrolled": 75,
         "modules": 8,
         "instructor": "Li Wei",
-        "category": "Chinese"
+        "category": "Chinese",
+        "description": "Li Wei's course spans 26 hours, distributed over 8 modules, to help you navigate Chinese business communication. Enhance your language skills and cultural understanding. Rated 4.3 with 75 enrolled students."
     },
     {
         "title": "Portuguese for Travelers",
@@ -41,7 +44,8 @@
         "enrolled": 70,
         "modules": 6,
         "instructor": "Carla Silva",
-        "category": "Portuguese"
+        "category": "Portuguese",
+        "description": "Embark on a language journey with Carla Silva, exploring Portuguese essentials for travel. Over 27 hours in 6 modules, gain practical language skills and cultural insights. Rated 4.1 with 70 enthusiastic learners."
     },
     {
         "title": "Arabic Language Essentials",
@@ -52,7 +56,8 @@
         "enrolled": 85,
         "modules": 10,
         "instructor": "Ahmed Ali",
-        "category": "Arabic"
+        "category": "Arabic",
+        "description": "Ahmed Ali's comprehensive 24-hour course, comprising 10 modules, offers a deep dive into Arabic language fundamentals. Develop proficiency in speaking, writing, and understanding Arabic. Rated 4.5 with 85 students enrolled."
     },
     {
         "title": "Korean Language Intensive Course",
@@ -63,7 +68,8 @@
         "enrolled": 105,
         "modules": 9,
         "instructor": "Kim Min-Ji",
-        "category": "Korean"
+        "category": "Korean",
+        "description": "Join Kim Min-Ji on a 32-hour immersive Korean language journey with 9 modules. From Hangul to conversational fluency, this course caters to K-pop enthusiasts, travelers, and culture enthusiasts. Rated 4.5 with 105 dedicated learners."
     },
     {
         "title": "German Grammar Fundamentals",
@@ -74,7 +80,8 @@
         "enrolled": 80,
         "modules": 6,
         "instructor": "Hans Müller",
-        "category": "German"
+        "category": "German",
+        "description": "Hans Müller's 28-hour course, divided into 6 modules, focuses on mastering German grammar. Enhance your language skills and gain confidence in written and spoken German. Rated 4.2 with 80 enrolled students."
     },
     {
         "title": "Italian Conversation Practice",
@@ -85,7 +92,8 @@
         "enrolled": 110,
         "modules": 7,
         "instructor": "Sofia Rossi",
-        "category": "Italian"
+        "category": "Italian",
+        "description": "Sofia Rossi's 26-hour course, consisting of 7 modules, provides advanced beginner level conversation practice in Italian. Develop fluency and confidence in real-life situations. Rated 4.6 with 110 learners."
     },
     {
         "title": "Japanese Writing Techniques",
@@ -96,7 +104,8 @@
         "enrolled": 100,
         "modules": 9,
         "instructor": "Takeshi Yamamoto",
-        "category": "Japanese"
+        "category": "Japanese",
+        "description": "Takeshi Yamamoto's 20-hour course, comprising 9 modules, focuses on mastering Japanese writing techniques. Enhance your skills in hiragana, katakana, and kanji. Rated 4.4 with 100 enrolled students."
     },
     {
         "title": "Russian Pronunciation Mastery",
@@ -107,6 +116,7 @@
         "enrolled": 95,
         "modules": 7,
         "instructor": "Natalya Ivanova",
-        "category": "Russian"
+        "category": "Russian",
+        "description": "Natalya Ivanova's 19-hour course, divided into 7 modules, helps you achieve mastery in Russian pronunciation. Develop clear and accurate pronunciation skills. Rated 4.7 with 95 students enrolled."
     }
 ]
