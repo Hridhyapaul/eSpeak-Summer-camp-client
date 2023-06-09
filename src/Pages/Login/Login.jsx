@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -14,8 +14,12 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    const { signIn, googleSignIn, } = useAuth();
+    const { signIn, googleSignIn } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         console.log(data)
@@ -33,7 +37,20 @@ const Login = () => {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
+                navigate(from, { replace: true });
             })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+            const loggedUser = result.user
+            console.log(loggedUser)
+            navigate(from, { replace: true });
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
     }
 
     return (
@@ -93,6 +110,7 @@ const Login = () => {
                         <span className="block w-14 h-0.5 bg-gray-300"></span>
                     </div>
                     <button
+                        onClick={handleGoogleSignIn}
                         type="button"
                         className="flex items-center justify-center gap-3 w-full py-1.5 text-[#082A5E] bg-white border-2 border-[#082A5E] hover:bg-[#082A5E] hover:text-white transform hover:scale-105 duration-300 rounded mt-4"
                     >

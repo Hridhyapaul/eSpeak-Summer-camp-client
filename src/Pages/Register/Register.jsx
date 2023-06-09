@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { Toaster, toast } from 'react-hot-toast'
@@ -14,8 +14,12 @@ const Register = () => {
         setShowPassword(!showPassword);
     };
 
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, googleSignIn } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         console.log(data)
@@ -35,6 +39,19 @@ const Register = () => {
                 }
             })
     }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser)
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
     return (
         <div className="flex flex-col items-center justify-center bg-gray-100 pb-20 pt-32">
             <h1 className="text-3xl font-bold mb-10">Registration Form</h1>
@@ -50,7 +67,7 @@ const Register = () => {
                                 {...register("name", { required: true })}
                                 placeholder='Enter Your Name'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             />
                             {errors.name && <p className="mt-2 text-[#CC0000]">Name field is required</p>}
                         </div>
@@ -63,7 +80,7 @@ const Register = () => {
                                 {...register("email", { required: true })}
                                 placeholder='Enter Your Email'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             />
                             {errors.email && <p className="mt-2 text-[#CC0000]">Email field is required</p>}
                         </div>
@@ -81,7 +98,7 @@ const Register = () => {
                                     })}
                                     className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
                                     placeholder="Enter your password"
-                                    
+
                                 />
                                 <button
                                     type="button"
@@ -109,7 +126,7 @@ const Register = () => {
                                 {...register("confirm", { required: true })}
                                 placeholder='Enter Confirm Password'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                               
+
                             />
                             {errors.confirm && <p className="mt-2 text-[#CC0000]">Confirm password is required</p>}
                         </div>
@@ -122,7 +139,7 @@ const Register = () => {
                                 {...register("photo", { required: true })}
                                 placeholder='Enter Photo URL'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             />
                             {errors.photo && <p className="mt-2 text-[#CC0000]">PhotoURL field is required</p>}
                         </div>
@@ -134,7 +151,7 @@ const Register = () => {
                                 name='gender'
                                 {...register("gender", { required: true })}
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             >
                                 <option value="">Select gender</option>
                                 <option value="male">Male</option>
@@ -151,7 +168,7 @@ const Register = () => {
                                 {...register("phone", { required: true })}
                                 placeholder='Enter Phone Number'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             />
                             {errors.phone && <p className="mt-2 text-[#CC0000]">Phone number field is required</p>}
                         </div>
@@ -163,7 +180,7 @@ const Register = () => {
                                 {...register("address", { required: true })}
                                 placeholder='Enter Your Address'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-                                
+
                             ></textarea>
                             {errors.address && <p className="mt-2 text-[#CC0000]">Address field is required</p>}
                         </div>
@@ -181,6 +198,7 @@ const Register = () => {
                     <span className="block w-14 h-0.5 bg-gray-300"></span>
                 </div>
                 <button
+                    onClick={handleGoogleSignIn}
                     type="button"
                     className="flex items-center justify-center gap-3 w-full py-1.5 text-[#082A5E] bg-white border-2 border-[#082A5E] hover:bg-[#082A5E] hover:text-white transform hover:scale-105 duration-300 rounded mt-4"
                 >

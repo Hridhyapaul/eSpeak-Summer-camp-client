@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import ClassContent from "../Pages/Classes/ClassContent/ClassContent";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
