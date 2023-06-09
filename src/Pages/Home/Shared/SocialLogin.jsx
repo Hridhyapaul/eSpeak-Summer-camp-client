@@ -9,6 +9,7 @@ const SocialLogin = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
+
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
@@ -25,8 +26,9 @@ const SocialLogin = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.insertedId) {
-                            navigate(from, { replace: true });
+                        console.log('User inserted to database')
                         }
+                        navigate(from, { replace: true });
                     })
             })
             .catch(error => {

@@ -20,8 +20,6 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const from = location.state?.from?.pathname || "/";
-
     const onSubmit = data => {
         console.log(data)
 
