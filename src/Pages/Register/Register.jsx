@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { Toaster, toast } from 'react-hot-toast'
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -23,13 +24,17 @@ const Register = () => {
 
     const onSubmit = data => {
         console.log(data)
+
         createUser(data.email, data.password)
             .then(result => {
                 const createUser = result.user;
                 console.log(createUser);
+
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
+                        const registeredUser = {name: data.name, email: data.email, photo: data.photo}
                         console.log('User profile updated')
+                        
                     })
             })
             .catch(error => {

@@ -18,7 +18,7 @@ const ClassContentCard = ({ course }) => {
     const handleCart = (course) => {
         console.log(course)
         if (user && user.email) {
-            const cartItem = { courseId: _id, image, title, duration, fee, modules, instructor, email: user?.email }
+            const cartItem = { courseId: _id, image, title, duration, fee, modules, instructor, email: user?.email, category }
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {

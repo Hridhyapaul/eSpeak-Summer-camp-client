@@ -5,6 +5,8 @@ import ClassContent from "../Pages/Classes/ClassContent/ClassContent";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import SelectedClass from "../Pages/Dashboard/MySelectedClass/SelectedClass";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +28,17 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
+            },
+            {
+                path: 'dashboard',
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+                children: [
+                    {
+                        path: 'selectedClass',
+                        element: <SelectedClass></SelectedClass>
+                    }
+                ]
             }
         ]
-    },
+    }
 ]);
