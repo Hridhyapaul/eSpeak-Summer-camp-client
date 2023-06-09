@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import { Toaster, toast } from 'react-hot-toast'
 import Swal from 'sweetalert2';
+import SocialLogin from '../Home/Shared/SocialLogin';
 
 const Register = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -15,7 +15,7 @@ const Register = () => {
         setShowPassword(!showPassword);
     };
 
-    const { createUser, updateUserProfile, googleSignIn } = useAuth();
+    const { createUser, updateUserProfile } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
@@ -62,18 +62,6 @@ const Register = () => {
                 if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
                     toast.error('The provided email is already registered.')
                 }
-            })
-    }
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                const loggedUser = result.user
-                console.log(loggedUser)
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                console.log(error.message);
             })
     }
 
@@ -217,22 +205,9 @@ const Register = () => {
                         Register
                     </button>
                 </form>
-                <div className="flex items-center justify-center space-x-2">
-                    <span className="block w-14 h-0.5 bg-gray-300"></span>
-                    <span className="text-gray-500">or</span>
-                    <span className="block w-14 h-0.5 bg-gray-300"></span>
-                </div>
-                <button
-                    onClick={handleGoogleSignIn}
-                    type="button"
-                    className="flex items-center justify-center gap-3 w-full py-1.5 text-[#082A5E] bg-white border-2 border-[#082A5E] hover:bg-[#082A5E] hover:text-white transform hover:scale-105 duration-300 rounded mt-4"
-                >
-                    <FaGoogle></FaGoogle>
-                    <p className='font-semibold'>Login with Google</p>
-                </button>
-
+                <SocialLogin></SocialLogin>
                 <div className='flex justify-center mt-5'>
-                    <p className='text-[16px]'>Not a member? <Link to='/login' className='text-[#082A5E] font-semibold'>Login</Link></p>
+                    <p className='text-[16px]'>Already have an account? <Link to='/login' className='text-[#082A5E] font-semibold'>Login</Link></p>
                 </div>
             </div>
             <Toaster
