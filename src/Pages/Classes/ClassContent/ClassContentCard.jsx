@@ -9,7 +9,7 @@ import useCart from '../../../Hooks/useCart';
 
 const ClassContentCard = ({ course }) => {
     console.log(course)
-    const { _id, category, duration, description, fee, image, modules, instructor, rating, enrolled, title } = course
+    const { _id, category, duration, description, price, image, modules, instructor_name, rating, available_seats, title } = course
     const { user } = useAuth();
     const [carts, refetch] = useCart();
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ClassContentCard = ({ course }) => {
     const handleCart = (course) => {
         console.log(course)
         if (user && user.email) {
-            const cartItem = { courseId: _id, image, title, duration, fee, modules, instructor, email: user?.email, category }
+            const cartItem = { courseId: _id, image, title, duration, price, modules, instructor_name, instructor_email: user?.email, category }
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
@@ -65,13 +65,13 @@ const ClassContentCard = ({ course }) => {
             <div className="ml-4 col-span-2">
                 <div className='flex justify-between items-center'>
                     <h3 className="bg-[#E7EFFC] text-[#1363DF] text-sm lg:text-[16px] mx-auto lg:mx-0 font-semibold rounded-full px-4 py-2 w-fit">{category}</h3>
-                    <p className='text-xl text-[#1363DF] font-bold'>${fee}</p>
+                    <p className='text-xl text-[#1363DF] font-bold'>${price}</p>
                 </div>
                 <h3 className="text-2xl font-semibold">{title}</h3>
                 <div className="flex justify-start gap-10 py-3">
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><RxReader></RxReader> {modules} lessons</span>
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <RxCounterClockwiseClock></RxCounterClockwiseClock>{duration}</span>
-                    <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <LuUsers></LuUsers>{enrolled} students</span>
+                    <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <LuUsers></LuUsers>{available_seats} students</span>
                     <span className='flex items-center gap-1'>
                         <FaStar className='text-[#FFD700]'></FaStar>
                         ({rating})
@@ -88,7 +88,7 @@ const ClassContentCard = ({ course }) => {
                                 <img src="https://i.ibb.co/fHqnkGQ/pexels-andrea-piacquadio-762020.jpg" />
                             </div>
                         </div>
-                        <p className='font-semibold'>{instructor}</p>
+                        <p className='font-semibold'>{instructor_name}</p>
                     </div>
                     <div className='space-x-3'>
                         <button onClick={() => handleCart(course)} className='bg-[#082A5E] px-4 py-2 rounded-full text-white'>Add to Cart</button>

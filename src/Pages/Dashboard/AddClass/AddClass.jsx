@@ -3,45 +3,63 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
+const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+
 const AddClass = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         console.log(data)
-        const classDetails = {
-            title: data.name,
-            image: data.image,
-            price: data.price,
-            duration: data.duration,
-            available_seats: data.seat,
-            modules: data.modules,
-            instructor_name: data.Instructor,
-            instructor_email: data.email,
-            category: data.category,
-            description: data.description
-        }
-        console.log(classDetails);
-        // fetch('http://localhost:5000/users', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(classDetails)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.insertedId) {
-        //             reset();
-        //             Swal.fire({
-        //                 position: 'top-end',
-        //                 icon: 'success',
-        //                 title: 'User created successfully',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //         }
-        //     })
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                console.log(imgResponse)
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const classDetails = {
+                        title: data.name,
+                        image: imgURL,
+                        price: parseFloat(data.price),
+                        duration: data.duration,
+                        available_seats: parseFloat(data.seat),
+                        modules: parseFloat(data.modules),
+                        instructor_name: data.Instructor,
+                        instructor_email: data.email,
+                        category: data.category,
+                        description: data.description,
+                        status: "pending"
+                    }
+                    console.log(classDetails)
+                    fetch('http://localhost:5000/courses', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(classDetails)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'You have successfully added a class! Please wait for approval.',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        })
+                }
+            })
     }
+
     return (
         <div className="flex flex-col items-center justify-center">
             <h1 className="text-3xl font-bold mb-10">Add a Class</h1>

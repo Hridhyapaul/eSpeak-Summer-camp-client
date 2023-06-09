@@ -3,7 +3,7 @@ import { LuUsers } from "react-icons/lu";
 import ReactStars from "react-rating-stars-component";
 
 const PopularClassesCard = ({ course }) => {
-    const { category, duration, fee, image, modules, rating, enrolled, title } = course
+    const { category, duration, price, image, modules, rating, available_seats, title } = course
 
     const courseRating = {
         size: 24,
@@ -21,7 +21,7 @@ const PopularClassesCard = ({ course }) => {
                 <div className="flex justify-between px-6">
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><RxReader></RxReader> {modules} lessons</span>
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <RxCounterClockwiseClock></RxCounterClockwiseClock>{duration}</span>
-                    <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <LuUsers></LuUsers>{enrolled} students</span>
+                    <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <LuUsers></LuUsers>{available_seats} students</span>
                 </div>
                 <div className="px-6 py-4">
                     <div className="font-bold text-xl text-[#082A5E] mb-2">{title}</div>
@@ -31,7 +31,7 @@ const PopularClassesCard = ({ course }) => {
                 </div>
                 <hr className="mx-6 my-4" />
                 <div className="px-6 pt-4">
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-[#082A5E]">${fee}</span>
+                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-lg font-semibold text-[#082A5E]">${price}</span>
                 </div>
             </div>
         </div>
