@@ -2,12 +2,16 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
 
 const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
-const AddClass = () => {
+const UpdateClass = () => {
     const { user } = useAuth();
-    const { register, handleSubmit, reset } = useForm();
+    const { _id } = useParams();
+    console.log(_id)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         console.log(data)
@@ -22,7 +26,7 @@ const AddClass = () => {
                 console.log(imgResponse)
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
-                    const classDetails = {
+                    const updateDetails = {
                         title: data.name,
                         image: imgURL,
                         price: parseFloat(data.price),
@@ -36,22 +40,22 @@ const AddClass = () => {
                         status: "pending",
                         feedback: "Under review"
                     }
-                    console.log(classDetails)
-                    fetch('http://localhost:5000/courses', {
-                        method: 'POST',
+                    console.log(updateDetails)
+                    fetch(`http://localhost:5000/updateCourse/${_id}`, {
+                        method: 'PUT',
                         headers: {
                             'content-type': 'application/json'
                         },
-                        body: JSON.stringify(classDetails)
+                        body: JSON.stringify(updateDetails)
                     })
                         .then(res => res.json())
                         .then(data => {
-                            if (data.insertedId) {
+                            if (data.modifiedCount > 0) {
                                 reset();
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'You have successfully added a class! Please wait for approval.',
+                                    title: 'You have successfully update your class.',
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
@@ -63,7 +67,7 @@ const AddClass = () => {
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <h1 className="text-3xl font-bold mb-10">Add a Class</h1>
+            <h1 className="text-3xl font-bold mb-10">Update Your Class</h1>
             <div className="w-[600px] bg-white rounded shadow-md p-12">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-2 gap-8">
@@ -83,6 +87,7 @@ const AddClass = () => {
                                 Class Image
                             </label>
                             <input {...register("image", { required: true })} type="file" className="file-input mt-3 file-input-sm w-full max-w-xs" />
+
                         </div>
                         <div className='col-span-2'>
                             <label htmlFor="password" className="block mb-1 font-medium">
@@ -173,7 +178,6 @@ const AddClass = () => {
                                 {...register("description", { required: true })}
                                 placeholder='Enter class description'
                                 className="w-full py-2 border-b border-gray-300 focus:outline-none focus:ring-[#082A5E] focus:border-[#082A5E]"
-
                             ></textarea>
                         </div>
                     </div>
@@ -181,7 +185,7 @@ const AddClass = () => {
                         type="submit"
                         className="w-full bg-[#082A5E] text-white rounded py-2 px-4 font-semibold transform hover:scale-105 duration-300 mt-8 mb-4"
                     >
-                        Submit
+                        Update
                     </button>
                 </form>
             </div>
@@ -189,4 +193,4 @@ const AddClass = () => {
     );
 };
 
-export default AddClass;
+export default UpdateClass;

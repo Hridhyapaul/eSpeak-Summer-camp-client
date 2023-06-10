@@ -3,7 +3,10 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const isInstructor = true;
+    const isAdmin = false;
+    const isUser = false;
+
     return (
         <div className="drawer lg:drawer-open pt-[70px]">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -16,19 +19,34 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-[#082A5E] text-[white] text-[16px] font-semibold">
                     {/* Sidebar content here */}
-                    {
-                        isAdmin ?
-                            <>
-                                <li><NavLink to='/dashboard/addClass'>Add a Class</NavLink></li>
-                                <li><NavLink to='/dashboard/myClasses'>My Classes</NavLink></li>
-                            </>
-                            :
-                            <>
-                                <li><NavLink to='/dashboard/selectedClass'>My Selected Class</NavLink></li>
-                                <li><NavLink to='/dashboard/enrolledClass'>My Enrolled Class</NavLink></li>
-                                <li><NavLink to='/dashboard/paymentHistory'>Payment History</NavLink></li>
-                            </>
-                    }
+                    {isInstructor && (
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/addClass">Add a Class</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/myClasses">My Classes</NavLink>
+                            </li>
+                        </>
+                    )}
+                    {isUser && (
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/selectedClass">My Selected Class</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/enrolledClass">My Enrolled Class</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
+                            </li>
+                        </>
+                    )}
+                    {isAdmin && (
+                        <li>
+                            <NavLink to="/dashboard/admin">Admin Dashboard</NavLink>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

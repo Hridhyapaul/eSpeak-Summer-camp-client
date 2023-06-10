@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import useCart from '../../../Hooks/useCart';
 
 const SelectedClassCard = ({ cart, index }) => {
-    const { _id, image, duration, modules, fee, title, category } = cart;
+    const { _id, image, duration, modules, price, title, category } = cart;
     const [, refetch] = useCart();
     const handleCourseDelete = (id) => {
         Swal.fire({
@@ -56,7 +56,7 @@ const SelectedClassCard = ({ cart, index }) => {
                     <span className="badge badge-ghost badge-sm">{category}</span>
                 </div>
             </td>
-            <td><p className='text-right'>${fee}</p></td>
+            <td><p className='text-right'>${price}</p></td>
             <td>
                 <p className='text-center'>{modules} modules</p>
             </td>

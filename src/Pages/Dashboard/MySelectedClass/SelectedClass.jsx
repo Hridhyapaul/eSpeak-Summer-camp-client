@@ -4,7 +4,8 @@ import SelectedClassCard from './SelectedClassCard';
 
 const SelectedClass = () => {
     const [carts] = useCart()
-    const total = carts.reduce((sum, item) => item.fee + sum, 0)
+    console.log(carts)
+    const total = carts.reduce((sum, item) => item.price + sum, 0)
     return (
         <div>
             <h2 className='text-3xl font-semibold text-start'>Your Have Selected Total (0{carts.length}) Classes</h2>
