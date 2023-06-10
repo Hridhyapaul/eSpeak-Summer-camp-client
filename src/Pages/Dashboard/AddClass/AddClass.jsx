@@ -34,7 +34,8 @@ const AddClass = () => {
                         category: data.category,
                         description: data.description,
                         status: "pending",
-                        feedback: "Under review"
+                        feedback: "Under review",
+                        enrolled_students: parseInt('0')
                     }
                     console.log(classDetails)
                     fetch('http://localhost:5000/courses', {

@@ -3,8 +3,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
 
-    const isInstructor = true;
-    const isAdmin = false;
+    const isInstructor = false;
+    const isAdmin = true;
     const isUser = false;
 
     return (
@@ -44,7 +44,7 @@ const Dashboard = () => {
                     )}
                     {isAdmin && (
                         <li>
-                            <NavLink to="/dashboard/admin">Admin Dashboard</NavLink>
+                            <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
                         </li>
                     )}
                 </ul>
