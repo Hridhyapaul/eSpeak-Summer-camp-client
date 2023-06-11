@@ -3,7 +3,7 @@ import { TfiPencilAlt } from "react-icons/tfi";
 import { Link } from 'react-router-dom';
 
 const MyClassesCard = ({ course, refetch, index }) => {
-    const {_id, title, category, feedback, status, price, modules, image, duration, enrolled_students } = course;
+    const { _id, title, category, feedback, status, price, modules, image, duration, enrolled_students } = course;
 
     return (
         <tr>
@@ -36,7 +36,15 @@ const MyClassesCard = ({ course, refetch, index }) => {
                 <p className='text-center'>{enrolled_students}</p>
             </td>
             <td>
-                <p className='bg-[#FFFF99] text-black text-sm rounded-full py-1 px-3 font-semibold'>{status}</p>
+                {status === 'Approved' && (
+                    <p className='bg-[#B8F7D4] text-black text-center text-sm rounded-full py-1 px-3 font-semibold'>{status}</p>
+                )}
+                {status === 'Denied' && (
+                    <p className='bg-[#F8B8A2] text-black text-center text-sm rounded-full py-1 px-3 font-semibold'>{status}</p>
+                )}
+                {status === 'pending' && (
+                    <p className='bg-[#FFFF99] text-black text-center text-sm rounded-full py-1 px-3 font-semibold'>{status}</p>
+                )}
             </td>
             <td>
                 <p>{feedback}</p>

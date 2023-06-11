@@ -8,9 +8,13 @@ const ManageClassesCard = ({ course, refetch, index }) => {
 
     const { register, handleSubmit, reset } = useForm();
     const [showModal, setShowModal] = useState(false);
+    const [isApproving, setIsApproving] = useState(false);
+    const [isDenied, setIsDenied] = useState(false)
 
     const handleApproval = (id) => {
         console.log(id)
+        setIsApproving(true);
+        setIsDenied(true)
         fetch(`http://localhost:5000/courses/${id}`, {
             method: 'PATCH',
             headers: {
@@ -24,9 +28,11 @@ const ManageClassesCard = ({ course, refetch, index }) => {
                     refetch();
                 }
             })
-    }
+    };
 
     const handleDeny = (id) => {
+        setIsDenied(true)
+        setIsApproving(true)
         console.log(id)
         fetch(`http://localhost:5000/courses/${id}`, {
             method: 'PATCH',
@@ -44,7 +50,23 @@ const ManageClassesCard = ({ course, refetch, index }) => {
     }
 
     const onSubmitFeedback = (data) => {
-        console.log(data);
+        console.log(data.feedback);
+        fetch(`http://localhost:5000/courses/${_id}/feedback`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.modifiedCount) {
+                    refetch(); // Refresh the data after updating the feedback
+                }
+            })
+            .catch(error => {
+                console.error('Error updating feedback:', error);
+            });
         reset()
         setShowModal(false);
     };
@@ -93,8 +115,20 @@ const ManageClassesCard = ({ course, refetch, index }) => {
 
             </td>
             <td>
-                <button onClick={() => handleApproval(_id)} className=" bg-[#B8F7D4] py-1 px-3 rounded-full font-bold mt-2 transform hover:scale-105 duration-300">Approve</button>
-                <button onClick={() => handleDeny(_id)} className=" bg-[#F8B8A2] py-1 px-3 rounded-full font-bold mt-2 transform hover:scale-105 duration-300">Deny</button>
+                <button
+                    onClick={() => handleApproval(_id)}
+                    disabled={isApproving}
+                    className={`${isApproving ? 'bg-[#B8F7D4] bg-opacity-50 opacity-50 cursor-not-allowed py-1 px-3 rounded-full font-bold mt-2' : 'bg-[#B8F7D4] py-1 px-3 rounded-full font-bold mt-2 transform hover:scale-105 duration-300'} `}
+                >
+                    Approve
+                </button>
+                <button
+                    onClick={() => handleDeny(_id)}
+                    disabled={isDenied}
+                    className={`${isDenied ? 'bg-[#F8B8A2] bg-opacity-50 opacity-50 cursor-not-allowed py-1 px-3 rounded-full font-bold mt-2' : 'bg-[#F8B8A2] py-1 px-3 rounded-full font-bold mt-2 transform hover:scale-105 duration-300'} `}
+                >
+                    Deny
+                </button>
             </td>
             <td>
                 <button onClick={() => setShowModal(true)} className='bg-base-300 text-center py-1 px-4 rounded-full font-bold mt-2 transform hover:scale-105 duration-300'>Send Feedback</button>
