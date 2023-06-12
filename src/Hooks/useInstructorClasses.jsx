@@ -5,6 +5,7 @@ const useInstructorClasses = () => {
     const { user } = useAuth();
     const { refetch, data: courses = [] } = useQuery({
         queryKey: ['instructorCourse', user?.email],
+        enabled: !!user?.email && !! localStorage.getItem("access-token"),
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/instructorCourse?email=${user?.email}`);
             return res.json();

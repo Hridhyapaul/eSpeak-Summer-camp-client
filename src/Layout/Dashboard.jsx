@@ -4,8 +4,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 const Dashboard = () => {
 
     const isInstructor = false;
-    const isAdmin = true;
-    const isUser = false;
+    const isAdmin = false;
+    const isUser = true;
 
     return (
         <div className="drawer lg:drawer-open pt-[70px]">
@@ -35,7 +35,10 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/selectedClass">My Selected Class</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/enrolledClass">My Enrolled Class</NavLink>
+                                <NavLink to="/dashboard/enrolledClasses">My Enrolled Class</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/payment">Payment</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>

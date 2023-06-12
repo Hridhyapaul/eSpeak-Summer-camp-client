@@ -41,9 +41,9 @@ const Banner = () => {
                 <SwiperSlide key={item.id}>
                     <div className="banner-slide mt-28 xl:mt-0 lg:flex lg:justify-between lg:items-center lg:gap-6 px-10 lg:px-20 lg:h-[650px]">
                         <div className="banner-text lg:w-1/2 w-full mx-auto space-y-10">
-                            <h2 className='text-md lg:text-2xl font-bold bg-[#6246ea] text-white w-fit px-4 py-2 rounded-xl'>{item.sub_text}</h2>
-                            <h2 className='text-2xl lg:text-4xl font-bold text-[#6246ea]'>{item.text}</h2>
-                            <button className='bg-[#6246ea] text-white text-[16px] font-semibold px-4 py-2 rounded '>Explore</button>
+                            <h2 className='text-md lg:text-2xl font-bold bg-[#E7EFFC] text-[#1363DF] w-fit px-4 py-2 rounded-xl'>{item.sub_text}</h2>
+                            <h2 className='text-2xl lg:text-4xl font-bold text-[#254372]'>{item.text}</h2>
+                            <button className='bg-[#1363DF] text-white text-[16px] font-semibold px-4 py-2 rounded '>Explore</button>
                             {/* Additional text or elements */}
                         </div>
                         <div className="banner-image lg:w-1/2 h-[400px] lg:h-[600px]">

@@ -6,19 +6,22 @@ import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../../Hooks/useCart';
+import { useState } from 'react';
 
 const ClassContentCard = ({ course }) => {
     console.log(course)
-    const { _id, category, duration, description, price, image, modules, instructor_name, rating, available_seats, title } = course
+    const { _id, category, duration, description, price, image, modules, instructor_name, rating, available_seats, title, enrolled_students } = course
     const { user } = useAuth();
     const [carts, refetch] = useCart();
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleCart = (course) => {
         console.log(course)
         if (user && user.email) {
-            const cartItem = { courseId: _id, image, title, duration, price, modules, instructor_name, instructor_email: user?.email, category }
+            setIsButtonDisabled(true);
+            const cartItem = { courseId: _id, image, title, duration, price, modules, instructor_name, student_email: user?.email, category }
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
@@ -60,7 +63,7 @@ const ClassContentCard = ({ course }) => {
     return (
         <div className="grid grid-cols-3 gap-3 p-4 bg-white rounded-lg shadow my-6">
             <div className="col-span-1">
-                <img className="w-full h-[275px] rounded-md object-cover" src={image} alt="Instructor" />
+                <img className="w-full h-[300px] rounded-md object-cover" src={image} alt="Instructor" />
             </div>
             <div className="ml-4 col-span-2">
                 <div className='flex justify-between items-center'>
@@ -71,15 +74,38 @@ const ClassContentCard = ({ course }) => {
                 <div className="flex justify-start gap-10 py-3">
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><RxReader></RxReader> {modules} lessons</span>
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <RxCounterClockwiseClock></RxCounterClockwiseClock>{duration}</span>
-                    <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <LuUsers></LuUsers>{available_seats} students</span>
                     <span className='flex items-center gap-1'>
-                        <FaStar className='text-[#FFD700]'></FaStar>
-                        ({rating})
+                        {
+                            !rating ?
+                                <>
+                                    <FaStar className='text-[#FFD700]'></FaStar>
+                                    (NAN)
+                                </>
+                                :
+                                <>
+                                    <FaStar className='text-[#FFD700]'></FaStar>
+                                    ({rating})
+                                </>
+                        }
                     </span>
                 </div>
                 <p className="text-gray-700">
                     {description}
                 </p>
+
+                <div className='flex justify-start items-center gap-10 pt-3'>
+                    <p className='font-normal text-md text-[#082A5E] mr-2'><span className='font-semibold'>Available Seats:</span> {available_seats}</p>
+                    {
+                        enrolled_students === 0 ?
+                            <>
+                                <p className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><LuUsers></LuUsers><span><span className='font-semibold'>Enrolled:</span> None </span></p>
+                            </>
+                            :
+                            <>
+                                <p className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><LuUsers></LuUsers><span><span className='font-semibold'>Enrolled:</span> {enrolled_students} </span></p>
+                            </>
+                    }
+                </div>
                 <hr className='my-5' />
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-3'>
@@ -90,9 +116,13 @@ const ClassContentCard = ({ course }) => {
                         </div>
                         <p className='font-semibold'>{instructor_name}</p>
                     </div>
-                    <div className='space-x-3'>
-                        <button onClick={() => handleCart(course)} className='bg-[#082A5E] px-4 py-2 rounded-full text-white'>Add to Cart</button>
-                        <button className='bg-[#082A5E] px-4 py-2 rounded-full text-white'>Enroll Now</button>
+                    <div>
+                        <button
+                            onClick={() => handleCart(course)}
+                            className={`${isButtonDisabled ? 'bg-[#082A5E] bg-opacity-50 opacity-50 cursor-not-allowed px-4 py-2 rounded-full text-white' : 'bg-[#082A5E] px-4 py-2 rounded-full text-white'}`}
+                            disabled={isButtonDisabled}
+                        >
+                            Add to Cart</button>
                     </div>
                 </div>
             </div>

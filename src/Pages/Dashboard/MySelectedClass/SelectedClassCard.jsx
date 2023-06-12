@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';

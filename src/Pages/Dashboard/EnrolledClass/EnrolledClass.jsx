@@ -1,21 +1,16 @@
 import React from 'react';
-import useCart from '../../../Hooks/useCart';
-import SelectedClassCard from './SelectedClassCard';
+import useAuth from '../../../Hooks/useAuth';
+import useEnrolledCourse from '../../../Hooks/useEnrolledCourse';
 import { Link } from 'react-router-dom';
+import EnrolledClassCard from './EnrolledClassCard';
 
-const SelectedClass = () => {
-    const [carts] = useCart()
-    console.log(carts)
-    const total = carts.reduce((sum, item) => item.price + sum, 0)
-    const subTotal = parseFloat(total.toFixed(2))
+const EnrolledClass = () => {
+    const [enrolledCourses] = useEnrolledCourse();
+    console.log(enrolledCourses)
     return (
         <div>
-            <h2 className='text-3xl font-semibold text-start'>Your Have Selected Total (0{carts.length}) Classes</h2>
+            <h2 className='text-3xl font-semibold text-start'>Your have enrolled total (0{enrolledCourses.length}) Classes</h2>
             <hr className='my-4' />
-            <div className='flex justify-between items-center'>
-                <p className='text-xl font-semibold'>Subtotal: ${subTotal}</p>
-                <Link to='/dashboard/payment'><button className='bg-[#082A5E] text-white rounded py-2 px-4 font-semibold transform hover:scale-105 duration-300'>Checkout</button></Link>
-            </div>
             <div className='mt-8'>
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -33,7 +28,7 @@ const SelectedClass = () => {
                         </thead>
                         <tbody>
                             {
-                                carts.map((cart, index) => <SelectedClassCard key={cart._id} cart={cart} index={index}></SelectedClassCard>)
+                                enrolledCourses.map((course, index) => <EnrolledClassCard key={course._id} course={course} index={index}></EnrolledClassCard>)
                             }
                         </tbody>
                     </table>
@@ -43,4 +38,4 @@ const SelectedClass = () => {
     );
 };
 
-export default SelectedClass;
+export default EnrolledClass;

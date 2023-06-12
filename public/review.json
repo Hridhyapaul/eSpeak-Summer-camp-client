@@ -1,0 +1,32 @@
+[
+    {
+      "image": "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=740&t=st=1685012799~exp=1685013399~hmac=54da441dadcc10eddbbb05d5b5f7d65af2e97aedc698628658947cfd6fd0da9e",
+      "studentName": "Luisa Martinez",
+      "rating": 4.5,
+      "review": "eSpeak has been incredibly helpful in improving my language skills. The interactive lessons and immersive environment make learning enjoyable!"
+    },
+    {
+      "image": "https://img.freepik.com/free-photo/newcomer-get-know-teammates-pleased-good-looking-businesswoman-transparent-glasses-blue-collar-shirt-smiling-broadly-assuring-good-quality-product-gray-wall_176420-25024.jpg?w=740&t=st=1685012916~exp=1685013516~hmac=1864da62b9330183f71dfffd1cc9ebd0ead0f12500bc00ca3c419785013318e4",
+      "studentName": "Hiroshi Tanaka",
+      "rating": 4.2,
+      "review": "I've tried multiple language learning platforms, but eSpeak stands out. The personalized feedback and diverse language resources have been instrumental in my progress."
+    },
+    {
+      "image": "https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?w=740&t=st=1685012983~exp=1685013583~hmac=f0d3cba4612476572334ce7295831480f217510ba6f846e30ae6c3345a74b4cb",
+      "studentName": "Sophie Leclerc",
+      "rating": 4.8,
+      "review": "eSpeak is a fantastic language learning tool. The platform's gamified approach and conversation practice have helped me gain confidence in speaking the language."
+    },
+    {
+      "image": "https://img.freepik.com/free-photo/lifestyle-people-emotions-casual-concept-confident-nice-smiling-asian-woman-cross-arms-chest-confident-ready-help-listening-coworkers-taking-part-conversation_1258-59335.jpg?w=740&t=st=1685013062~exp=1685013662~hmac=2bf080a14dfcdc8e04c699652a7e479ec7ffb19f24aac40ea35128681d1333a3",
+      "studentName": "Ahmed Khan",
+      "rating": 4.6,
+      "review": "As a beginner, eSpeak has made language learning accessible and engaging. The step-by-step lessons and audio recordings have improved my pronunciation."
+    },
+    {
+      "image": "https://img.freepik.com/premium-photo/closeup-portrait-attractive-young-woman-dark-background_774935-389.jpg?w=740",
+      "studentName": "Isabella Rossi",
+      "rating": 4.4,
+      "review": "I'm impressed with eSpeak's comprehensive curriculum and intuitive interface. The platform's cultural insights and real-world scenarios have enriched my language learning experience."
+    }
+  ]
