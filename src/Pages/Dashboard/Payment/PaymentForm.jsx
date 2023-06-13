@@ -5,7 +5,7 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
-const PaymentForm = ({ price, carts }) => {
+const PaymentForm = ({ price, carts, refetch }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [paymentError, setPaymentError] = useState('')
@@ -94,6 +94,7 @@ const PaymentForm = ({ price, carts }) => {
                 .then(res => {
                     console.log(res.data);
                     if (res.data.insertResult.insertedId) {
+                        refetch();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',

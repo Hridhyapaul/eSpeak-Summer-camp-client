@@ -75,7 +75,7 @@ const ManageUserCard = ({ user, index, refetch }) => {
                 {role === 'Instructor' && (
                     <p className='bg-[#A2B9ED] text-black text-center text-sm rounded-full py-1 px-3 font-semibold'>{role}</p>
                 )}
-                {!role && (
+                {role === 'Student' && (
                     <p className='bg-[#A3DCEF] text-black text-center text-sm rounded-full py-1 px-3 font-semibold'>Student</p>
                 )}
             </td>

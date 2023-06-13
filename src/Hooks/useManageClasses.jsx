@@ -1,17 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import useAuth from './useAuth';
+import useAxiosSecure from './useAxiosSecure';
 
 const useManageClasses = () => {
     const { user } = useAuth();
-    const { data: courses = [], refetch } = useQuery({
-        queryKey: ['course'],
-        enabled: !!user?.email && !! localStorage.getItem("access-token"),
+    const [axiosSecure] = useAxiosSecure();
+    const {data: courses = [], refetch, isLoading: loading } = useQuery({
+        queryKey: ['courses'],
+        // enabled: !!user?.email && !! localStorage.getItem("access-token"),
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/manageCourses');
-            return res.json();
+            const res = await axiosSecure.get('/manageCourses');
+            console.log(res)
+            return res.data;
         }
     })
-    return [courses, refetch]
+    return [courses, refetch, loading]
 };
 
 export default useManageClasses;
