@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Toaster, toast } from 'react-hot-toast'
 import Swal from 'sweetalert2';
 import SocialLogin from '../Home/Shared/SocialLogin';
+import { useEffect } from 'react';
 
 const Register = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -16,9 +17,15 @@ const Register = () => {
     };
 
     const { createUser, updateUserProfile } = useAuth();
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
+    const password = watch("password");
+    const confirm = watch("confirm");
+
+    useEffect(() => {
+        setIsSubmitDisabled(password !== confirm);
+    }, [password, confirm]);
 
     const onSubmit = data => {
         console.log(data)
@@ -198,7 +205,8 @@ const Register = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-[#082A5E] text-white rounded py-2 px-4 font-semibold transform hover:scale-105 duration-300 mt-8 mb-4"
+                        className={`${isSubmitDisabled? 'bg-[#082A5E] bg-opacity-50 opacity-50' : 'bg-[#082A5E]'} w-full  text-white rounded py-2 px-4 font-semibold transform hover:scale-105 duration-300 mt-8 mb-4`}
+                        disabled={isSubmitDisabled}
                     >
                         Register
                     </button>

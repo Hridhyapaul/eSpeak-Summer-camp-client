@@ -6,6 +6,7 @@ import useStudent from "../../../../Hooks/useStudent";
 import '../Navigation/Navigation.css'
 import useAdmin from "../../../../Hooks/useAdmin";
 import useInstructor from "../../../../Hooks/useInstructor";
+import logo from "../../../../../public/logo.svg"
 
 const Navigation = () => {
     const { user, logOut } = useAuth();
@@ -20,7 +21,7 @@ const Navigation = () => {
     const handleLogout = () => {
         logOut()
             .then(() => {
-                
+
             }).catch((error) => {
                 // An error happened.
             });
@@ -47,7 +48,10 @@ const Navigation = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="normal-case text-2xl font-bold"><span className="text-[#FF4667]">e</span><span className="text-[#082A5E]">Speak</span></a>
+                <div>
+                    <img className="w-32" src={logo} alt="" />
+                    {/* <a className="normal-case text-sm font-bold"><span className="text-[#FF4667]">e</span><span className="text-[#082A5E]">Speak</span></a> */}
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-[16px] font-semibold text-[#082A5E]">

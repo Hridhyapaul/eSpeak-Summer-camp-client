@@ -9,7 +9,7 @@ const EnrolledClass = () => {
     console.log(enrolledCourses)
     return (
         <div>
-            <h2 className='text-3xl font-semibold text-start'>Your have enrolled total (0{enrolledCourses.length}) Classes</h2>
+            <h2 className='text-3xl font-bold text-center'>You have joined (0{enrolledCourses.length}) Classes</h2>
             <hr className='my-4' />
             <div className='mt-8'>
                 <div className="overflow-x-auto">

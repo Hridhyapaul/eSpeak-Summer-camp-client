@@ -10,7 +10,7 @@ const SelectedClass = () => {
     const subTotal = parseFloat(total.toFixed(2))
     return (
         <div>
-            <h2 className='text-3xl font-semibold text-start'>Your Have Selected Total (0{carts.length}) Classes</h2>
+            <h2 className='text-3xl font-bold text-center'>You have chosen (0{carts.length}) classes in total</h2>
             <hr className='my-4' />
             <div className='flex justify-between items-center'>
                 <p className='text-xl font-semibold'>Subtotal: ${subTotal}</p>

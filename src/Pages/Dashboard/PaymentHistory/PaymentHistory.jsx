@@ -7,7 +7,7 @@ const PaymentHistory = () => {
     console.log(paymentHistory)
     return (
         <div>
-            <h2 className='text-3xl font-semibold text-center'>Your payment history</h2>
+            <h2 className='text-3xl font-bold text-center'>Your payment history</h2>
             <hr className='my-4' />
             <div className='mt-8'>
                 <div className="overflow-x-auto">
