@@ -17,11 +17,14 @@ import EnrolledClass from "../Pages/Dashboard/EnrolledClass/EnrolledClass";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import Instructor from "../Pages/Instructor/Instructor";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -30,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path: "/classes",
                 element: <ClassContent></ClassContent>
+            },
+            {
+                path: "/instructors",
+                element: <Instructor></Instructor>
             },
             {
                 path: "/login",
@@ -48,7 +55,7 @@ export const router = createBrowserRouter([
 
                     {
                         path: 'addClass',
-                        element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
+                        element: <PrivateRoute><InstructorRoute><AddClass></AddClass></InstructorRoute></PrivateRoute>
                     },
                     {
                         path: 'myClasses',
@@ -63,7 +70,7 @@ export const router = createBrowserRouter([
 
                     {
                         path: 'manageClasses',
-                        element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
+                        element: <PrivateRoute><AdminRoute><ManageClasses></ManageClasses></AdminRoute></PrivateRoute>
                     },
                     {
                         path: 'manageUsers',

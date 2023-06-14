@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
 
             // Get and set token...
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', {
+                axios.post('https://e-speak-server-hridhyapaul.vercel.app/jwt', {
                     email: currentUser.email
                 })
                     .then(data => {

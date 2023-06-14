@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navigation from "../Pages/Home/Shared/Navigation";
+import Navigation from "../Pages/Home/Shared/Navigation/Navigation";
 import Footer from "../Pages/Home/Shared/Footer";
 
 const Main = () => {

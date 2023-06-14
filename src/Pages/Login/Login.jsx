@@ -93,7 +93,9 @@ const Login = () => {
                             Login
                         </button>
                     </form>
+                    <div className='mt-5'>
                     <SocialLogin></SocialLogin>
+                    </div>
                     <div className='flex justify-center mt-5'>
                         <p className='text-[14px]'>Not a member? <Link to='/register' className='text-[#082A5E] font-semibold'>Register now</Link></p>
                     </div>

@@ -31,6 +31,7 @@ const AddClass = () => {
                         modules: parseFloat(data.modules),
                         instructor_name: data.Instructor,
                         instructor_email: data.email,
+                        instructor_image: user.photoURL,
                         category: data.category,
                         description: data.description,
                         status: "pending",
@@ -38,7 +39,7 @@ const AddClass = () => {
                         enrolled_students: parseInt('0')
                     }
                     console.log(classDetails)
-                    fetch('http://localhost:5000/courses', {
+                    fetch('https://e-speak-server-hridhyapaul.vercel.app/courses', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

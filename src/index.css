@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.drawer-side a.active {
+.drawer-side ul li a.active{
     color: #082A5E;
     background-color: white;
 }
+

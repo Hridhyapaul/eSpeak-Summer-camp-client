@@ -7,22 +7,27 @@ import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../../Hooks/useCart';
 import { useState } from 'react';
+import useAdmin from '../../../Hooks/useAdmin';
+import useInstructor from '../../../Hooks/useInstructor';
 
 const ClassContentCard = ({ course }) => {
     console.log(course)
-    const { _id, category, duration, description, price, image, modules, instructor_name, rating, available_seats, title, enrolled_students } = course
+    const { _id, category, duration, description, price, image, modules, instructor_name, rating, available_seats, title, enrolled_students, instructor_image } = course
     const { user } = useAuth();
     const [carts, refetch] = useCart();
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+
     const handleCart = (course) => {
         console.log(course)
         if (user && user.email) {
             setIsButtonDisabled(true);
             const cartItem = { courseId: _id, image, title, duration, price, modules, instructor_name, student_email: user?.email, category }
-            fetch('http://localhost:5000/carts', {
+            fetch('https://e-speak-server-hridhyapaul.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -61,7 +66,7 @@ const ClassContentCard = ({ course }) => {
     }
 
     return (
-        <div className="grid grid-cols-3 gap-3 p-4 bg-white rounded-lg shadow my-6">
+        <div className={`grid grid-cols-3 gap-3 p-4 ${available_seats === 0 ? 'bg-red-500 bg-opacity-10' : 'bg-white'} rounded-lg shadow my-6`}>
             <div className="col-span-1">
                 <img className="w-full h-[300px] rounded-md object-cover" src={image} alt="Instructor" />
             </div>
@@ -70,7 +75,7 @@ const ClassContentCard = ({ course }) => {
                     <h3 className="bg-[#E7EFFC] text-[#1363DF] text-sm lg:text-[16px] mx-auto lg:mx-0 font-semibold rounded-full px-4 py-2 w-fit">{category}</h3>
                     <p className='text-xl text-[#1363DF] font-bold'>${price}</p>
                 </div>
-                <h3 className="text-2xl font-semibold">{title}</h3>
+                <h3 className="text-2xl text-[#082A5E] font-semibold">{title}</h3>
                 <div className="flex justify-start gap-10 py-3">
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><RxReader></RxReader> {modules} lessons</span>
                     <span className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"> <RxCounterClockwiseClock></RxCounterClockwiseClock>{duration}</span>
@@ -79,7 +84,7 @@ const ClassContentCard = ({ course }) => {
                             !rating ?
                                 <>
                                     <FaStar className='text-[#FFD700]'></FaStar>
-                                    (NAN)
+                                    <span className='text-[#082A5E]'>(NAN)</span>
                                 </>
                                 :
                                 <>
@@ -89,7 +94,7 @@ const ClassContentCard = ({ course }) => {
                         }
                     </span>
                 </div>
-                <p className="text-gray-700">
+                <p className="text-[#082A5E]">
                     {description}
                 </p>
 
@@ -102,7 +107,14 @@ const ClassContentCard = ({ course }) => {
                             </>
                             :
                             <>
-                                <p className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"><LuUsers></LuUsers><span><span className='font-semibold'>Enrolled:</span> {enrolled_students} </span></p>
+                                <p
+                                    className="flex justify-center items-center gap-1 font-normal text-md text-[#082A5E] mr-2"
+                                >
+                                    <LuUsers></LuUsers>
+                                    <span>
+                                        <span className='font-semibold'>Enrolled:</span> {enrolled_students < 10 ? `0${enrolled_students}` : enrolled_students}
+                                    </span>
+                                </p>
                             </>
                     }
                 </div>
@@ -111,18 +123,28 @@ const ClassContentCard = ({ course }) => {
                     <div className='flex items-center gap-3'>
                         <div className="avatar">
                             <div className="w-10 rounded-full">
-                                <img src="https://i.ibb.co/fHqnkGQ/pexels-andrea-piacquadio-762020.jpg" />
+                                <img src={instructor_image} />
                             </div>
                         </div>
                         <p className='font-semibold'>{instructor_name}</p>
                     </div>
                     <div>
-                        <button
-                            onClick={() => handleCart(course)}
-                            className={`${isButtonDisabled ? 'bg-[#082A5E] bg-opacity-50 opacity-50 cursor-not-allowed px-4 py-2 rounded-full text-white' : 'bg-[#082A5E] px-4 py-2 rounded-full text-white'}`}
-                            disabled={isButtonDisabled}
-                        >
-                            Add to Cart</button>
+                        {isAdmin || isInstructor ? (
+                            <button
+                                className="bg-[#082A5E] bg-opacity-50 opacity-50 px-4 py-2 rounded-full text-white cursor-not-allowed"
+                                disabled={isAdmin && isInstructor}
+                            >
+                                {available_seats === 0 ? 'Enrollment Closed' : 'Only for Student'}
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => handleCart(course)}
+                                className={`${isButtonDisabled || available_seats === 0 ? 'bg-[#082A5E] bg-opacity-50 opacity-50 cursor-not-allowed px-4 py-2 rounded-full text-white' : 'bg-[#082A5E] px-4 py-2 rounded-full text-white'}`}
+                                disabled={isButtonDisabled || available_seats === 0}
+                            >
+                                {available_seats === 0 ? 'Enrollment Closed' : 'Add to Cart'}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

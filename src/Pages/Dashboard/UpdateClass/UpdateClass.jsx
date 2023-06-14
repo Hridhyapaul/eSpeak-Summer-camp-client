@@ -41,7 +41,7 @@ const UpdateClass = () => {
                         feedback: "Under review"
                     }
                     console.log(updateDetails)
-                    fetch(`http://localhost:5000/updateCourse/${_id}`, {
+                    fetch(`https://e-speak-server-hridhyapaul.vercel.app/updateCourse/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'

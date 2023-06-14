@@ -32,7 +32,7 @@ const Register = () => {
                     .then(() => {
                         const registeredUser = { name: data.name, email: data.email, photo: data.photo, role: 'Student' }
                         console.log('User profile updated')
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://e-speak-server-hridhyapaul.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

@@ -10,12 +10,13 @@ const ManageClassesCard = ({ course, refetch, index }) => {
     const [showModal, setShowModal] = useState(false);
     const [isApproving, setIsApproving] = useState(false);
     const [isDenied, setIsDenied] = useState(false)
+    const [isFeedbackDisable, setIsFeedbackDisable] = useState(true)
 
     const handleApproval = (id) => {
         console.log(id)
         setIsApproving(true);
         setIsDenied(true)
-        fetch(`http://localhost:5000/courses/${id}`, {
+        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -33,8 +34,9 @@ const ManageClassesCard = ({ course, refetch, index }) => {
     const handleDeny = (id) => {
         setIsDenied(true)
         setIsApproving(true)
+        setIsFeedbackDisable(false)
         console.log(id)
-        fetch(`http://localhost:5000/courses/${id}`, {
+        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,7 +53,7 @@ const ManageClassesCard = ({ course, refetch, index }) => {
 
     const onSubmitFeedback = (data) => {
         console.log(data.feedback);
-        fetch(`http://localhost:5000/courses/${_id}/feedback`, {
+        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${_id}/feedback`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -131,7 +133,7 @@ const ManageClassesCard = ({ course, refetch, index }) => {
                 </button>
             </td>
             <td>
-                <button onClick={() => setShowModal(true)} className='bg-base-300 text-center py-1 px-4 rounded-full font-bold mt-2 transform hover:scale-105 duration-300'>Send Feedback</button>
+                <button disabled={isFeedbackDisable} onClick={() => setShowModal(true)} className={` ${isFeedbackDisable? 'bg-base-300 bg-opacity-50 opacity-50 cursor-not-allowed': 'bg-base-300 transform hover:scale-105 duration-300'} text-center py-1 px-4 rounded-full font-bold mt-2`}>Send Feedback</button>
             </td>
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">

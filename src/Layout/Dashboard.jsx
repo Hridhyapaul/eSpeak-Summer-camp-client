@@ -29,36 +29,36 @@ const Dashboard = () => {
                     {isInstructor && (
                         <>
                             <li>
-                                <NavLink to="/dashboard/addClass">Add a Class</NavLink>
+                                <NavLink to="/dashboard/addClass" activeClassName="active">Add a Class</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/myClasses">My Classes</NavLink>
+                                <NavLink to="/dashboard/myClasses" activeClassName="active">My Classes</NavLink>
                             </li>
                         </>
                     )}
                     {isStudent && (
                         <>
                             <li>
-                                <NavLink to="/dashboard/selectedClass">My Selected Class</NavLink>
+                                <NavLink to="/dashboard/selectedClass" activeClassName="active">My Selected Class</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/enrolledClasses">My Enrolled Class</NavLink>
+                                <NavLink to="/dashboard/enrolledClasses" activeClassName="active">My Enrolled Class</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/payment">Payment</NavLink>
+                                <NavLink to="/dashboard/payment" activeClassName="active">Payment</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
+                                <NavLink to="/dashboard/paymentHistory" activeClassName="active">Payment History</NavLink>
                             </li>
                         </>
                     )}
                     {isAdmin && (
                         <>
                             <li>
-                                <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
+                                <NavLink to="/dashboard/manageClasses" activeClassName="active">Manage Classes</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageUsers">Manage Users</NavLink>
+                                <NavLink to="/dashboard/manageUsers" activeClassName="active">Manage Users</NavLink>
                             </li>
                         </>
                     )}
