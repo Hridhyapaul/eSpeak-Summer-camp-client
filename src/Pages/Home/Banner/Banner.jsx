@@ -14,19 +14,19 @@ const Banner = () => {
             id: 1,
             text: 'Unlock your potential through immersive language learning experiences',
             sub_text: 'Master New Languages',
-            image: '../../../../public/Images/Banner-1.png',
+            image: 'https://i.ibb.co/vxzxY09/Banner-3.png',
         },
         {
             id: 2,
             text: 'Discover diverse cultures and open doors to global opportunities',
             sub_text: 'Expand Your Horizons',
-            image: '../../../../public/Images/Banner-2.png',
+            image: 'https://i.ibb.co/HtHwtrb/Banner-1.png',
         },
         {
             id: 3,
             text: 'Gain fluency and connect with people from around the world',
             sub_text: 'Communicate with Confidence',
-            image: '../../../../public/Images/Banner-3.png',
+            image: 'https://i.ibb.co/Xyg9Q08/Banner-2.png',
         },
     ];
 

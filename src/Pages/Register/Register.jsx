@@ -39,7 +39,7 @@ const Register = () => {
                     .then(() => {
                         const registeredUser = { name: data.name, email: data.email, photo: data.photo, role: 'Student' }
                         console.log('User profile updated')
-                        fetch('https://e-speak-server-hridhyapaul.vercel.app/users', {
+                        fetch('https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

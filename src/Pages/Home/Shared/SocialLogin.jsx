@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 const loggedUser = result.user
                 console.log(loggedUser)
                 const registeredUser = { name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL }
-                fetch('https://e-speak-server-hridhyapaul.vercel.app/users', {
+                fetch('https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

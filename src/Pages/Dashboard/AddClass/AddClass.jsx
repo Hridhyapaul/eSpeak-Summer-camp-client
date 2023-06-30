@@ -39,7 +39,7 @@ const AddClass = () => {
                         enrolled_students: parseInt('0')
                     }
                     console.log(classDetails)
-                    fetch('https://e-speak-server-hridhyapaul.vercel.app/courses', {
+                    fetch('https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/courses', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

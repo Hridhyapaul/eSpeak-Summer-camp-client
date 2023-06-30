@@ -18,7 +18,7 @@ const SelectedClassCard = ({ cart, index }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://e-speak-server-hridhyapaul.vercel.app/carts/${id}`, {
+                fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/carts/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

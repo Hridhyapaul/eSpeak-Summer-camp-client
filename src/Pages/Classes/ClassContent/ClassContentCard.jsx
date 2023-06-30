@@ -27,7 +27,7 @@ const ClassContentCard = ({ course }) => {
         if (user && user.email) {
             setIsButtonDisabled(true);
             const cartItem = { courseId: _id, image, title, duration, price, modules, instructor_name, student_email: user?.email, category }
-            fetch('https://e-speak-server-hridhyapaul.vercel.app/carts', {
+            fetch('https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

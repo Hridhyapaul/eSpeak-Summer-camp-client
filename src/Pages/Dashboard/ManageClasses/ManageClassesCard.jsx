@@ -16,7 +16,7 @@ const ManageClassesCard = ({ course, refetch, index }) => {
         console.log(id)
         setIsApproving(true);
         setIsDenied(true)
-        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${id}`, {
+        fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/courses/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const ManageClassesCard = ({ course, refetch, index }) => {
         setIsApproving(true)
         setIsFeedbackDisable(false)
         console.log(id)
-        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${id}`, {
+        fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/courses/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const ManageClassesCard = ({ course, refetch, index }) => {
 
     const onSubmitFeedback = (data) => {
         console.log(data.feedback);
-        fetch(`https://e-speak-server-hridhyapaul.vercel.app/courses/${_id}/feedback`, {
+        fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/courses/${_id}/feedback`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

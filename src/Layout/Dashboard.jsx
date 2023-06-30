@@ -21,12 +21,14 @@ const Dashboard = () => {
                 <title>eSpeak | Dashboard</title>
             </Helmet>
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-start mx-8 my-16">
+            <div className="drawer-content flex flex-col mx-8 my-16">
                 {/* Page content here */}
-                <Outlet></Outlet>
+                <div className='flex items-center justify-start'>
+                    <Outlet></Outlet>
+                </div>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side fixed ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-[#082A5E] text-[white] text-[16px] font-semibold">
                     {/* Sidebar content here */}

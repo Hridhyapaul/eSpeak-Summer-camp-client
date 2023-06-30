@@ -10,7 +10,7 @@ const ManageUserCard = ({ user, index, refetch }) => {
         console.log(id)
         setIsMadeAdmin(true);
         setIsMadeInstructor(true)
-        fetch(`https://e-speak-server-hridhyapaul.vercel.app/users/admin/${id}`, {
+        fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/users/admin/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ const ManageUserCard = ({ user, index, refetch }) => {
         setIsMadeInstructor(true)
         setIsMadeAdmin(true)
         console.log(id)
-        fetch(`https://e-speak-server-hridhyapaul.vercel.app/users/admin/${id}`, {
+        fetch(`https://e-speak-server-ie0i5px7u-hridhyapaul.vercel.app/users/admin/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
