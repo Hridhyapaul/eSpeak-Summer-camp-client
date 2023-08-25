@@ -41,6 +41,18 @@ const Dashboard = () => {
                             <li>
                                 <NavLink to="/dashboard/myClasses" activeClassName="active">My Classes</NavLink>
                             </li>
+
+                            <hr className='my-5' />
+
+                            <li>
+                                <NavLink to="/" activeClassName="active">Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/instructors" activeClassName="active">Instructors</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/classes" activeClassName="active">Classes</NavLink>
+                            </li>
                         </>
                     )}
                     {isStudent && (
@@ -80,7 +92,17 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/manageUsers" activeClassName="active">Manage Users</NavLink>
                             </li>
 
-                        
+                            <hr className='my-5' />
+
+                            <li>
+                                <NavLink to="/" activeClassName="active">Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/instructors" activeClassName="active">Instructors</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/classes" activeClassName="active">Classes</NavLink>
+                            </li>
                         </>
                     )}
                 </ul>
