@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
@@ -15,7 +14,7 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    const { signIn, googleSignIn } = useAuth();
+    const { signIn} = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();

@@ -45,57 +45,57 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+
+            // Instructor routes....
+
+            {
+                path: 'addClass',
+                element: <PrivateRoute><InstructorRoute><AddClass></AddClass></InstructorRoute></PrivateRoute>
             },
             {
-                path: 'dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-                children: [
+                path: 'myClasses',
+                element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
+            },
+            {
+                path: 'updateClass/:_id',
+                element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>
+            },
 
-                    // Instructor routes....
+            // Admin Routes....
 
-                    {
-                        path: 'addClass',
-                        element: <PrivateRoute><InstructorRoute><AddClass></AddClass></InstructorRoute></PrivateRoute>
-                    },
-                    {
-                        path: 'myClasses',
-                        element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
-                    },
-                    {
-                        path: 'updateClass/:_id',
-                        element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>
-                    },
+            {
+                path: 'manageClasses',
+                element: <PrivateRoute><AdminRoute><ManageClasses></ManageClasses></AdminRoute></PrivateRoute>
+            },
+            {
+                path: 'manageUsers',
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
+            },
 
-                    // Admin Routes....
+            // Students Routes....
 
-                    {
-                        path: 'manageClasses',
-                        element: <PrivateRoute><AdminRoute><ManageClasses></ManageClasses></AdminRoute></PrivateRoute>
-                    },
-                    {
-                        path: 'manageUsers',
-                        element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
-                    },
-
-                    // Students Routes....
-
-                    {
-                        path: 'selectedClass',
-                        element: <SelectedClass></SelectedClass>
-                    },
-                    {
-                        path: 'payment',
-                        element: <Payment></Payment>
-                    },
-                    {
-                        path: 'enrolledClasses',
-                        element: <EnrolledClass></EnrolledClass>
-                    },
-                    {
-                        path: 'paymentHistory',
-                        element: <PaymentHistory></PaymentHistory>
-                    }
-                ]
+            {
+                path: 'selectedClass',
+                element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
+            },
+            {
+                path: 'enrolledClasses',
+                element: <EnrolledClass></EnrolledClass>
+            },
+            {
+                path: 'paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
             }
         ]
     }
