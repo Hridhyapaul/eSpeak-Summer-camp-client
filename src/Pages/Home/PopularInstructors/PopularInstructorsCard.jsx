@@ -7,7 +7,7 @@ const PopularInstructorsCard = ({ instructor }) => {
     return (
         <div className="max-w-[410px] cursor-pointer rounded col-span-1 overflow-hidden shadow-lg group-hover:blur-sm hover:!blur-none transform group-hover:scale-[0.85] hover:!scale-100 transition-transform duration-500">
 
-            <div className="bg-white border-[3px] border-white rounded">
+            <div className="bg-designColor border-[3px] border-deepColor rounded">
                 <div className="mt-6">
                     <img src={photo} alt="Card Image" className="w-[100px] h-[100px] mx-auto rounded-full object-cover" />
                 </div>

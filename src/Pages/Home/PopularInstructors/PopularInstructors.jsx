@@ -8,7 +8,7 @@ const PopularInstructors = () => {
     const [instructors] = useInstructorPage();
 
     return (
-        <div className="bg-deepColor font-body">
+        <div className="bg-designColor font-body">
             <Container>
                 <div className="mt-28 pt-28 pb-20">
                     <div className="mb-16">
