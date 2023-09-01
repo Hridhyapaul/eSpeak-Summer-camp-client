@@ -66,7 +66,7 @@ const ClassContentCard = ({ course }) => {
     }
 
     return (
-        <div className={`grid grid-cols-3 gap-3 p-4 ${available_seats === 0 ? 'bg-red-500 bg-opacity-10' : 'bg-white'} rounded-lg shadow my-6`}>
+        <div className={`grid grid-cols-3 gap-3 p-4 ${available_seats === 0 ? 'bg-red-500 bg-opacity-10' : 'bg-white'} rounded-lg shadow-lg mb-8`}>
             <div className="col-span-1">
                 <img className="w-full h-[300px] rounded-md object-cover" src={image} alt="Instructor" />
             </div>
